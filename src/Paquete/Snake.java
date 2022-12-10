@@ -8,18 +8,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Snake extends JPanel{
+    
     Color colorSnake = Color.BLACK;         // Color Serpiente
-    Color colorComida = Color.RED;          // Color Comida
+    Color colorComida = Color.BLACK;          // Color Comida
     int tamanomax, tamano, cantidad, res;   // Variables
     List<int[]> snake = new ArrayList<>();  // Array con las posiciones de la serpiente
     int[] comida = new int[2];                           // Array Comida
     String direccion = "right";             // Direccion de la Serpiente
     String direccionProxima = "right";
+    public static int score = 0;
     
     Thread hilo;
     Move move;
     
     public Snake(int tamanomax, int cantidad){
+        
         this.tamanomax = tamanomax;
         this.cantidad = cantidad;
         this.tamano = tamanomax/cantidad;
@@ -36,8 +39,6 @@ public class Snake extends JPanel{
         hilo = new Thread(move);
         hilo.start();
         
-        
-        
     }
     
     @Override
@@ -47,12 +48,12 @@ public class Snake extends JPanel{
         
         /* Pinta la Serpiente */
         for (int[] sn:snake){
-             pintor.fillRect((res/2+(sn[0])*tamano), (res/2+(sn[1])*tamano) , tamano-1, tamano-1);
+            pintor.fillRect((res/2+(sn[0])*tamano), (res/2+(sn[1])*tamano) , tamano-1, tamano-1);
         }
         
         /* Pinta la comida */
         pintor.setColor(colorComida);
-        pintor.fillRect((res/2+(comida[0])*tamano), (res/2+(comida[1])*tamano) , tamano-1, tamano-1);
+        pintor.fillOval((res/2+(comida[0])*tamano), (res/2+(comida[1])*tamano) , tamano-1, tamano-1);
     
     }
     
@@ -62,14 +63,16 @@ public class Snake extends JPanel{
         int agregarx = 0;
         int agregary = 0;
         switch(direccion){
-            case "right": agregarx = 1; break;
-            case "left": agregarx = -1; break;
-            case "up": agregary = -1; break;
-            case "down": agregary = 1; break;
+            case "right":   agregarx = 1;   break;
+            case "left":    agregarx = -1;  break;
+            case "up":      agregary = -1;  break;
+            case "down":    agregary = 1;   break;
         }
         
-        int[] nuevo = {Math.floorMod((ultimo[0]+agregarx),cantidad), 
-                        Math.floorMod((ultimo[1]+agregary),cantidad)};
+        //int[] nuevo = {Math.floorMod((ultimo[0]+agregarx),cantidad), 
+        //                Math.floorMod((ultimo[1]+agregary),cantidad)};
+        
+        int[] nuevo = {ultimo[0]+agregarx,ultimo[1]+agregary};
         
         boolean existe = false;
         
@@ -80,20 +83,26 @@ public class Snake extends JPanel{
             }
         }
         
-        /*
-        for (int i = 0; i < snake.size(); i++){
-            if (nuevo[0] == snake.get(i)[0] && nuevo[1] == snake.get(i)[0]){
-                 existe = true;
-                 break;
-            }
-        }
-        */
         if(existe){
-            JOptionPane.showMessageDialog(this, "has perdido");
+            JOptionPane.showMessageDialog(this, "Has perdido");
+            
+        } else if (nuevo[0]<0 || nuevo[0]>=cantidad || nuevo[1]<0 || nuevo[1]>=cantidad  ) {
+            JOptionPane.showMessageDialog(this, "Has perdido");
+            
         } else {
             if (nuevo[0]==comida[0] && nuevo[1]==comida[1]){
                snake.add(nuevo);
                generarComida();
+               score++;
+               if (score<10){
+                   Game.LblScore.setText("000"+score);
+               } else if (score<100){ 
+                   Game.LblScore.setText("00"+score);
+               } else if (score<1000){ 
+                   Game.LblScore.setText("0"+score);
+               } else {
+                   Game.LblScore.setText(""+score);
+               }   
             } else {
                 snake.add(nuevo);
                 snake.remove(0);
@@ -133,4 +142,7 @@ public class Snake extends JPanel{
         this.direccion = this.direccionProxima;
     }
     
+    public int puntuacion(){
+        return score;
+    }
 }

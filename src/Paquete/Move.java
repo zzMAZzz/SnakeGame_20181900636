@@ -7,11 +7,11 @@ import java.util.logging.Logger;
 public class Move implements Runnable{
     
     Snake snake;
+   
     boolean estado = true;
     
     public Move(Snake snake){
         this.snake = snake;
-        
     }
 
     @Override
@@ -20,7 +20,7 @@ public class Move implements Runnable{
             snake.avanzar();
             snake.repaint();
              try {
-                 Thread.sleep(150);
+                 Thread.sleep(160);
              } catch (InterruptedException ex) {
                  Logger.getLogger(Move.class.getName()).log(Level.SEVERE, null, ex);
              }

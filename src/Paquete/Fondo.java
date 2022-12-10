@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class Fondo extends JPanel{
-    /* Color de Borde y Relleno del lienzo */
-    Color Background = new Color(145,196,5);
-    Color Borders = new Color(137,187,2);
+
+    Color Background = new Color(137,166,105);
+    Color Borders = new Color(137,166,105);
     
     int tamanomax, tamano, cantidad,res;
     

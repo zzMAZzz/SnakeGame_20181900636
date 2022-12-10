@@ -2,33 +2,62 @@ package Paquete;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
-public class Vista extends javax.swing.JFrame{
-    Snake snakeh;
-    public Vista() {
+
+public class Game extends javax.swing.JFrame{
+    
+    Snake snake;
+    int time = 0;
+    
+    public Game() {
+        
         /* "t" es el tamaño y "c" la cantidad de casillas, es decir 30 x 30. */
         int t = 600; int c = 30;
         initComponents();
         
         /* Establece el color de Fondo para el Form. */
-        Color Background = new Color(137,187,2);
+        //Color Background = new Color(30,30,30);
+        Color Background = new Color(88,105,68);
         this.getContentPane().setBackground(Background);
         this.setLocationRelativeTo(null);   // Centrar Ventana
         
         /* Pinta la serpiente al inicio */
-        snakeh = new Snake(t,c);
-        this.add(snakeh);
-        snakeh.setBounds(10,10,t,t);
-        snakeh.setOpaque(false);
+        snake = new Snake(t,c);
+        this.add(snake);
+        snake.setBounds(10,10,t,t);
+        snake.setOpaque(false);
         
         /* Pinta el lienzo del juego */
         Fondo fondo = new Fondo(t,c);
         this.add(fondo);
         fondo.setBounds(10,10,t,t);
-        
         txtKeyPress.requestFocus(false);
+        Timer timeGame = new Timer(1000, new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                
+                int MM = time/60;
+                int SS = time%60;
+                
+                if (MM<10 && SS<10){
+                    LblTime.setText("0"+ MM + ":0" + SS);
+                } else if (MM<10){
+                    LblTime.setText("0"+ MM + ":" + SS);
+                } else if (SS<10){
+                    LblTime.setText(MM + ":0" + SS);
+                } else {
+                    LblTime.setText(MM + ":" + SS);
+                }
+
+                time++;
+            }
+        }); 
+        
+        timeGame.start();
     }
+   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,13 +65,14 @@ public class Vista extends javax.swing.JFrame{
 
         jPanel1 = new javax.swing.JPanel();
         Btn_Exit = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         txtKeyPress = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        LblScore = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        LblTime = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        LblScore1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(145, 196, 5));
@@ -71,11 +101,6 @@ public class Vista extends javax.swing.JFrame{
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel1.setText("LEVEL:");
-
         txtKeyPress.setText("jTextField1");
         txtKeyPress.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -83,30 +108,35 @@ public class Vista extends javax.swing.JFrame{
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setText("0000");
-
-        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setText("TIME:");
-
-        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setText("0000");
+        LblScore.setFont(new java.awt.Font("DS-Digital", 0, 48)); // NOI18N
+        LblScore.setForeground(new java.awt.Color(255, 255, 255));
+        LblScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblScore.setText("0000");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SCORE:");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setText("Easy");
+        jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("TIME");
+
+        LblTime.setFont(new java.awt.Font("DS-Digital", 0, 48)); // NOI18N
+        LblTime.setForeground(new java.awt.Color(255, 255, 255));
+        LblTime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblTime.setText("00:00");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("LEVEL:");
+
+        LblScore1.setFont(new java.awt.Font("DS-Digital", 0, 48)); // NOI18N
+        LblScore1.setForeground(new java.awt.Color(255, 255, 255));
+        LblScore1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblScore1.setText("EASY");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,41 +152,52 @@ public class Vista extends javax.swing.JFrame{
                         .addComponent(txtKeyPress, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(24, 24, 24))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LblScore, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LblScore1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LblTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(Btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(115, 115, 115))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addGap(394, 394, 394)
+                .addGap(6, 6, 6)
+                .addComponent(Btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LblScore)
+                .addGap(57, 57, 57)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LblScore1)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LblTime)
+                .addGap(235, 235, 235)
                 .addComponent(txtKeyPress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setEnabled(false);
+        jPanel2.setFocusable(false);
+        jPanel2.setOpaque(false);
+        jPanel2.setRequestFocusEnabled(false);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 363, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 255, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -164,12 +205,18 @@ public class Vista extends javax.swing.JFrame{
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 620, Short.MAX_VALUE)
+                .addGap(130, 130, 130)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(160, 160, 160))
         );
 
         pack();
@@ -180,10 +227,11 @@ public class Vista extends javax.swing.JFrame{
 
     private void txtKeyPressKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtKeyPressKeyPressed
         switch(evt.getKeyCode()){
-            case 37, KeyEvent.VK_A -> snakeh.cambiarDireccion("left");
-            case 38, KeyEvent.VK_W -> snakeh.cambiarDireccion("up");
-            case 39, KeyEvent.VK_D ->snakeh.cambiarDireccion("right");
-            case 40, KeyEvent.VK_S ->snakeh.cambiarDireccion("down");
+            case 37, KeyEvent.VK_A -> snake.cambiarDireccion("left");
+            case 38, KeyEvent.VK_W -> snake.cambiarDireccion("up");
+            case 39, KeyEvent.VK_D -> snake.cambiarDireccion("right");
+            case 40, KeyEvent.VK_S -> snake.cambiarDireccion("down");
+            case KeyEvent.VK_SPACE -> LblScore.setText(""+snake.puntuacion());
             default -> {}
         }
     }//GEN-LAST:event_txtKeyPressKeyPressed
@@ -207,33 +255,35 @@ public class Vista extends javax.swing.JFrame{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Vista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Game.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vista().setVisible(true);
+                new Game().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Exit;
-    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JLabel LblScore;
+    public static javax.swing.JLabel LblScore1;
+    private static javax.swing.JLabel LblTime;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtKeyPress;
     // End of variables declaration//GEN-END:variables
 
