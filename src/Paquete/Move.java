@@ -20,7 +20,7 @@ public class Move implements Runnable{
             snake.avanzar();
             snake.repaint();
              try {
-                 Thread.sleep(500);
+                 Thread.sleep(150);
              } catch (InterruptedException ex) {
                  Logger.getLogger(Move.class.getName()).log(Level.SEVERE, null, ex);
              }
