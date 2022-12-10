@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 public class Fondo extends JPanel{
-    
+    /* Color de Borde y Relleno del lienzo */
     Color Background = new Color(145,196,5);
     Color Borders = new Color(137,187,2);
     
@@ -22,7 +22,7 @@ public class Fondo extends JPanel{
     public void paint(Graphics pintor){
         super.paint(pintor);
         
-        // Para el eje X e Y:
+        /* Pinta o Dibuja el fondo y contorno en las casillas del lienzo. */
         for (int i = 0; i < cantidad; i++){
             for (int j = 0; j < cantidad; j++){
                 pintor.setColor(Background);
