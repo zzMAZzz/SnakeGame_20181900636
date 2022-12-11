@@ -1,4 +1,4 @@
-package Paquete;
+package App;
 
 import java.awt.Color;
 import java.awt.Graphics;

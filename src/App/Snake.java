@@ -1,4 +1,4 @@
-package Paquete;
+package App;
 
 import java.applet.AudioClip;
 import java.awt.Color;
@@ -41,7 +41,8 @@ public class Snake extends JPanel{
         snake.add(b);  
         generarComida();
         
-        move = new Move(this);
+        move = new Move();
+        move.Objetos(this,50);
         hilo = new Thread(move);
         hilo.start();
         
