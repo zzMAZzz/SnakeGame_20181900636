@@ -7,7 +7,6 @@ import java.util.logging.Logger;
 public class Move implements Runnable{
     
     Snake snake;
-   
     boolean estado = true;
     
     public Move(Snake snake){
@@ -27,8 +26,5 @@ public class Move implements Runnable{
         }
     }
     
-    public void parar(){
-        this.estado = false;
-    }
-    
+
 }

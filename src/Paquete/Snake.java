@@ -1,5 +1,6 @@
 package Paquete;
 
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -16,7 +17,11 @@ public class Snake extends JPanel{
     int[] comida = new int[2];                           // Array Comida
     String direccion = "right";             // Direccion de la Serpiente
     String direccionProxima = "right";
-    public static int score = 0;
+    int score = 0;
+    boolean soundOn = true;
+    boolean estado = true;
+    AudioClip soundFile;
+    
     
     Thread hilo;
     Move move;
@@ -27,6 +32,7 @@ public class Snake extends JPanel{
         this.cantidad = cantidad;
         this.tamano = tamanomax/cantidad;
         this.res = tamanomax%cantidad;
+        soundFile = java.applet.Applet.newAudioClip(getClass().getResource("/Sonidos/effect.wav"));
         
         /* La Serpiente inicia con dos casillas A y B */
         int[] a = {cantidad/2-1,cantidad/2-1};
@@ -94,6 +100,9 @@ public class Snake extends JPanel{
                snake.add(nuevo);
                generarComida();
                score++;
+               if (soundOn){
+                   soundFile.play();
+               }
                if (score<10){
                    Game.LblScore.setText("000"+score);
                } else if (score<100){ 
@@ -142,7 +151,13 @@ public class Snake extends JPanel{
         this.direccion = this.direccionProxima;
     }
     
-    public int puntuacion(){
-        return score;
+    public void CambiarSonido(boolean active){
+        this.soundOn = active;
     }
+    
+    public void CambiarEstado(boolean status){
+        this.estado = status;
+    }
+    
+    
 }

@@ -1,21 +1,25 @@
 package Paquete;
 
+import java.applet.AudioClip;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 
 public class Game extends javax.swing.JFrame{
     
     Snake snake;
+    int t = 600; int c = 30;
     int time = 0;
+    int sound = 0;
+    
     
     public Game() {
         
         /* "t" es el tamaño y "c" la cantidad de casillas, es decir 30 x 30. */
-        int t = 600; int c = 30;
         initComponents();
         
         /* Establece el color de Fondo para el Form. */
@@ -34,7 +38,8 @@ public class Game extends javax.swing.JFrame{
         Fondo fondo = new Fondo(t,c);
         this.add(fondo);
         fondo.setBounds(10,10,t,t);
-        txtKeyPress.requestFocus(false);
+        txtKeyPress.requestFocus(true);
+        
         Timer timeGame = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e){
                 
@@ -72,6 +77,8 @@ public class Game extends javax.swing.JFrame{
         LblTime = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         LblScore1 = new javax.swing.JLabel();
+        BtnSound = new javax.swing.JButton();
+        BtnHome = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -138,6 +145,24 @@ public class Game extends javax.swing.JFrame{
         LblScore1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblScore1.setText("EASY");
 
+        BtnSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Sound.png"))); // NOI18N
+        BtnSound.setBorder(null);
+        BtnSound.setContentAreaFilled(false);
+        BtnSound.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSoundActionPerformed(evt);
+            }
+        });
+
+        BtnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
+        BtnHome.setBorder(null);
+        BtnHome.setContentAreaFilled(false);
+        BtnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,6 +186,12 @@ public class Game extends javax.swing.JFrame{
                     .addComponent(LblScore1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(LblTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(BtnSound, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(BtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +210,11 @@ public class Game extends javax.swing.JFrame{
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LblTime)
-                .addGap(235, 235, 235)
+                .addGap(103, 103, 103)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnSound, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82)
                 .addComponent(txtKeyPress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -231,7 +266,7 @@ public class Game extends javax.swing.JFrame{
             case 38, KeyEvent.VK_W -> snake.cambiarDireccion("up");
             case 39, KeyEvent.VK_D -> snake.cambiarDireccion("right");
             case 40, KeyEvent.VK_S -> snake.cambiarDireccion("down");
-            case KeyEvent.VK_SPACE -> LblScore.setText(""+snake.puntuacion());
+            case KeyEvent.VK_P -> snake.cambiarDireccion("down");
             default -> {}
         }
     }//GEN-LAST:event_txtKeyPressKeyPressed
@@ -240,6 +275,30 @@ public class Game extends javax.swing.JFrame{
         System.exit(0);
 
     }//GEN-LAST:event_Btn_ExitActionPerformed
+
+    private void BtnSoundActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSoundActionPerformed
+        ImageIcon iconoS= new ImageIcon("src/Images/sound.png");
+        ImageIcon iconoM= new ImageIcon("src/Images/mute.png");
+        switch(sound){
+            case 0:
+               BtnSound.setIcon(iconoM);
+               sound = 1;
+               snake.CambiarSonido(false);
+               break;
+            case 1:
+                BtnSound.setIcon(iconoS);
+                sound = 0;
+                snake.CambiarSonido(true);
+                break; 
+        }
+        txtKeyPress.requestFocus(false);
+    }//GEN-LAST:event_BtnSoundActionPerformed
+
+    private void BtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHomeActionPerformed
+
+        snake.hilo.stop();
+        txtKeyPress.requestFocus(false);
+    }//GEN-LAST:event_BtnHomeActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -275,6 +334,8 @@ public class Game extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnHome;
+    private javax.swing.JButton BtnSound;
     private javax.swing.JButton Btn_Exit;
     public static javax.swing.JLabel LblScore;
     public static javax.swing.JLabel LblScore1;
