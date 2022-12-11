@@ -52,7 +52,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Goethe" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Activar Paredes"/>
+        <Property name="text" type="java.lang.String" value="Active Walls"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <AuxValues>
@@ -60,7 +60,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="110" y="390" width="-1" height="-1"/>
+          <AbsoluteConstraints x="140" y="390" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -98,7 +98,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Goethe" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Dificil"/>
+        <Property name="text" type="java.lang.String" value="Hard"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -121,7 +121,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Goethe" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Medio"/>
+        <Property name="text" type="java.lang.String" value="Medium"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -129,7 +129,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="160" y="320" width="-1" height="-1"/>
+          <AbsoluteConstraints x="150" y="320" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -145,7 +145,7 @@
           <Font name="Goethe" size="24" style="1"/>
         </Property>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Facil"/>
+        <Property name="text" type="java.lang.String" value="Easy"/>
         <Property name="focusPainted" type="boolean" value="false"/>
       </Properties>
       <Events>
@@ -185,6 +185,9 @@
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNameKeyReleased"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtNameKeyTyped"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="50" y="240" width="320" height="40"/>

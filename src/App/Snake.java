@@ -105,9 +105,6 @@ public class Snake extends JPanel{
             nuevo = aux;
         }
         
-        //int[] nuevo = {Math.floorMod((ultimo[0]+agregarx),cantidad), 
-        //                Math.floorMod((ultimo[1]+agregary),cantidad)};
-        
         boolean existe = false;
         
         for (int[] sn:snake){
@@ -118,10 +115,12 @@ public class Snake extends JPanel{
         }
         
         if(existe){
-            JOptionPane.showMessageDialog(this, "Has perdido");
             
+            Game.PanelGO.setVisible(true);  // Game Over por chocar consigo mismo
+
         } else if (nuevo[0]<0 || nuevo[0]>=cantidad || nuevo[1]<0 || nuevo[1]>=cantidad  ) {
-            JOptionPane.showMessageDialog(this, "Has perdido");
+            
+            Game.PanelGO.setVisible(true);  // Game Over por salir de area.
             
         } else {
             if (nuevo[0]==comida[0] && nuevo[1]==comida[1]){

@@ -48,9 +48,9 @@ public class Menu extends javax.swing.JFrame {
 
         cbWall.setBackground(new java.awt.Color(154, 204, 153));
         cbWall.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
-        cbWall.setText("Activar Paredes");
+        cbWall.setText("Active Walls");
         cbWall.setFocusPainted(false);
-        getContentPane().add(cbWall, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
+        getContentPane().add(cbWall, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, -1, -1));
 
         btnEmpezar.setBackground(new java.awt.Color(0, 0, 0));
         btnEmpezar.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
@@ -67,7 +67,7 @@ public class Menu extends javax.swing.JFrame {
         rdBtn3.setBackground(new java.awt.Color(154, 204, 153));
         btnGroup.add(rdBtn3);
         rdBtn3.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
-        rdBtn3.setText("Dificil");
+        rdBtn3.setText("Hard");
         rdBtn3.setFocusPainted(false);
         rdBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,20 +79,20 @@ public class Menu extends javax.swing.JFrame {
         rdBtn2.setBackground(new java.awt.Color(154, 204, 153));
         btnGroup.add(rdBtn2);
         rdBtn2.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
-        rdBtn2.setText("Medio");
+        rdBtn2.setText("Medium");
         rdBtn2.setFocusPainted(false);
         rdBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtn2ActionPerformed(evt);
             }
         });
-        getContentPane().add(rdBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, -1, -1));
+        getContentPane().add(rdBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
 
         rdBtn1.setBackground(new java.awt.Color(154, 204, 153));
         btnGroup.add(rdBtn1);
         rdBtn1.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
         rdBtn1.setSelected(true);
-        rdBtn1.setText("Facil");
+        rdBtn1.setText("Easy");
         rdBtn1.setFocusPainted(false);
         rdBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,7 +254,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdBtn1;
     private javax.swing.JRadioButton rdBtn2;
     private javax.swing.JRadioButton rdBtn3;
-    private javax.swing.JTextField txtName;
+    public static javax.swing.JTextField txtName;
     public static javax.swing.JTextField txtSpeed;
     // End of variables declaration//GEN-END:variables
 }
