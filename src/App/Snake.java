@@ -19,8 +19,9 @@ public class Snake extends JPanel{
     String direccionProxima = "right";
     int score = 0;
     int speed;
-    boolean soundOn;
     boolean estado = true;
+    boolean isWall;
+    boolean soundOn;
     AudioClip soundFile;
     
     
@@ -92,10 +93,20 @@ public class Snake extends JPanel{
             case "down":    agregary = 1;   break;
         }
         
+        int[] nuevo;
+        
+        if (isWall){
+            int[] aux = {ultimo[0]+agregarx,ultimo[1]+agregary};
+            nuevo = aux;
+            
+        } else {
+            int[] aux = {Math.floorMod((ultimo[0]+agregarx),cantidad), 
+                        Math.floorMod((ultimo[1]+agregary),cantidad)};
+            nuevo = aux;
+        }
+        
         //int[] nuevo = {Math.floorMod((ultimo[0]+agregarx),cantidad), 
         //                Math.floorMod((ultimo[1]+agregary),cantidad)};
-        
-        int[] nuevo = {ultimo[0]+agregarx,ultimo[1]+agregary};
         
         boolean existe = false;
         
@@ -178,6 +189,10 @@ public class Snake extends JPanel{
     
     public void cambiarVelocidad(int speed){
         this.speed = speed;
+    }
+    
+    public void cambiarParedes(boolean wall){
+        this.isWall = wall;
     }
     
     

@@ -1,15 +1,24 @@
 package App;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 
 public class Menu extends javax.swing.JFrame {
 
+    String nombre;
+    
     public Menu() {
         initComponents();
         Color Background = new Color(0, 0, 0);
         this.getContentPane().setBackground(Background);
         this.setLocationRelativeTo(null);   // Centrar Ventana
         rdBtn1.requestFocus(true);
+
+    }
+    
+    
+    public void MostrarMenu(){
+        this.setVisible(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -18,6 +27,7 @@ public class Menu extends javax.swing.JFrame {
 
         btnGroup = new javax.swing.ButtonGroup();
         txtSpeed = new javax.swing.JTextField();
+        cbWall = new javax.swing.JCheckBox();
         btnEmpezar = new javax.swing.JButton();
         rdBtn3 = new javax.swing.JRadioButton();
         rdBtn2 = new javax.swing.JRadioButton();
@@ -36,50 +46,60 @@ public class Menu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        cbWall.setBackground(new java.awt.Color(154, 204, 153));
+        cbWall.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
+        cbWall.setText("Activar Paredes");
+        cbWall.setFocusPainted(false);
+        getContentPane().add(cbWall, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, -1, -1));
+
         btnEmpezar.setBackground(new java.awt.Color(0, 0, 0));
         btnEmpezar.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
         btnEmpezar.setForeground(new java.awt.Color(255, 255, 255));
         btnEmpezar.setText("Empezar");
+        btnEmpezar.setEnabled(false);
         btnEmpezar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEmpezarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEmpezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 430, 130, 60));
+        getContentPane().add(btnEmpezar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 460, 130, 60));
 
         rdBtn3.setBackground(new java.awt.Color(154, 204, 153));
         btnGroup.add(rdBtn3);
         rdBtn3.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
-        rdBtn3.setText("dificil");
+        rdBtn3.setText("Dificil");
+        rdBtn3.setFocusPainted(false);
         rdBtn3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtn3ActionPerformed(evt);
             }
         });
-        getContentPane().add(rdBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, -1, -1));
+        getContentPane().add(rdBtn3, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, -1, -1));
 
         rdBtn2.setBackground(new java.awt.Color(154, 204, 153));
         btnGroup.add(rdBtn2);
         rdBtn2.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
-        rdBtn2.setText("medio");
+        rdBtn2.setText("Medio");
+        rdBtn2.setFocusPainted(false);
         rdBtn2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtn2ActionPerformed(evt);
             }
         });
-        getContentPane().add(rdBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, -1, -1));
+        getContentPane().add(rdBtn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, -1, -1));
 
         rdBtn1.setBackground(new java.awt.Color(154, 204, 153));
         btnGroup.add(rdBtn1);
         rdBtn1.setFont(new java.awt.Font("Goethe", 1, 24)); // NOI18N
         rdBtn1.setSelected(true);
-        rdBtn1.setText("facil");
+        rdBtn1.setText("Facil");
+        rdBtn1.setFocusPainted(false);
         rdBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdBtn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(rdBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, -1));
+        getContentPane().add(rdBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
 
         txtName.setBackground(new java.awt.Color(154, 204, 153));
         txtName.setFont(new java.awt.Font("Goethe", 1, 48)); // NOI18N
@@ -101,6 +121,17 @@ public class Menu extends javax.swing.JFrame {
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
+            }
+        });
+        txtName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNameKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNameKeyTyped(evt);
             }
         });
         getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 320, 40));
@@ -162,18 +193,18 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void txtNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusGained
-        String texto = txtName.getText();
-        if (texto.equals("Nombre")){
+        nombre = txtName.getText();
+        if (nombre.equals("Nombre")){
             txtName.setText("");
         } else {
-            txtName.setText(texto);
+            txtName.setText(nombre);
         }
     }//GEN-LAST:event_txtNameFocusGained
 
     private void txtNameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusLost
-        String texto = txtName.getText();
-        if (!texto.equals("")){
-            txtName.setText(texto);
+        nombre = txtName.getText();
+        if (!nombre.equals("")){
+            txtName.setText(nombre);
         } else {
             txtName.setText("Nombre");
         }
@@ -182,7 +213,29 @@ public class Menu extends javax.swing.JFrame {
     private void btnEmpezarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEmpezarActionPerformed
         Game game = new Game();
         game.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnEmpezarActionPerformed
+
+    private void txtNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyPressed
+     
+    }//GEN-LAST:event_txtNameKeyPressed
+
+    private void txtNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyReleased
+        int tamano=0;
+        switch(evt.getKeyCode()){
+            default:
+                tamano = txtName.getText().length();
+                nombre = txtName.getText();
+                if (tamano<=0){
+                    btnEmpezar.setEnabled(false);
+                } else {
+                    btnEmpezar.setEnabled(true);
+                }
+        }
+    }//GEN-LAST:event_txtNameKeyReleased
+
+    private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+    }//GEN-LAST:event_txtNameKeyTyped
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -196,6 +249,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton btnEmpezar;
     private javax.swing.JButton btnExit;
     private javax.swing.ButtonGroup btnGroup;
+    public static javax.swing.JCheckBox cbWall;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JRadioButton rdBtn1;
     private javax.swing.JRadioButton rdBtn2;

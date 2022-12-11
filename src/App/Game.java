@@ -26,6 +26,7 @@ public class Game extends JFrame{
     int time = 0;
     int sound = 0;
     boolean isSound = true;
+    boolean isWall;
     
     
     public Game() {
@@ -54,34 +55,43 @@ public class Game extends JFrame{
         this.add(fondo);
         fondo.setBounds(10,10,t,t);
         
-        
+        /* Modifica la configuracion de Sonido */
         snake.CambiarSonido(isSound);
         
-        Timer timeGame = new Timer(1000, new ActionListener(){
-            public void actionPerformed(ActionEvent e){
-                
-                int MM = time/60;
-                int SS = time%60;
-                
-                if (MM<10 && SS<10){
-                    LblTime.setText("0"+ MM + ":0" + SS);
-                } else if (MM<10){
-                    LblTime.setText("0"+ MM + ":" + SS);
-                } else if (SS<10){
-                    LblTime.setText(MM + ":0" + SS);
-                } else {
-                    LblTime.setText(MM + ":" + SS);
-                }
-
-                time++;
-            }
-        }); 
+        /* Modifica si hay paredes o no */
+        if (Menu.cbWall.isSelected()){
+            isWall = true;
+        } else {
+            isWall = false;
+        }
+        snake.cambiarParedes(isWall);
         
-        timeGame.start();
+        timerGame.start();
     }
+    
+    public Timer timerGame = new Timer(1000, (ActionEvent e) -> {
+            int MM = time/60;
+            int SS = time%60;
+            
+            if (MM<10 && SS<10){
+                LblTime.setText("0"+ MM + ":0" + SS);
+            } else if (MM<10){
+                LblTime.setText("0"+ MM + ":" + SS);
+            } else if (SS<10){
+                LblTime.setText(MM + ":0" + SS);
+            } else {
+                LblTime.setText(MM + ":" + SS);
+            }
+            
+            time++;
+        }); 
+    
     
     public void reset(){
         snake.hilo.stop();
+        timerGame.stop();
+        LblTime.setText("00:00");
+        LblScore.setText("0000");
         this.remove(snake);
         this.remove(fondo);
         time = 0;
@@ -92,12 +102,6 @@ public class Game extends JFrame{
         draw.setOpaque(false);
         txtKeyPress.requestFocus(true);
     }
-    
-    public void getData(){
-        
-    }
-    
-   
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -125,6 +129,7 @@ public class Game extends JFrame{
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
         setBackground(new java.awt.Color(145, 196, 5));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
@@ -205,7 +210,7 @@ public class Game extends JFrame{
                 BtnSoundActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnSound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, -1, -1));
+        jPanel1.add(BtnSound, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 550, -1, -1));
 
         BtnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
         BtnHome.setBorder(null);
@@ -215,7 +220,7 @@ public class Game extends JFrame{
                 BtnHomeActionPerformed(evt);
             }
         });
-        jPanel1.add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 550, -1, -1));
+        jPanel1.add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 550, -1, -1));
 
         BtnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reset.png"))); // NOI18N
         BtnReset.setBorder(null);
@@ -351,7 +356,11 @@ public class Game extends JFrame{
     }//GEN-LAST:event_BtnSoundActionPerformed
 
     private void BtnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHomeActionPerformed
-        txtKeyPress.requestFocus(false);
+        Menu menu = new Menu();
+        menu.MostrarMenu();
+        reset();
+        this.dispose();
+        this.setVisible(false);
     }//GEN-LAST:event_BtnHomeActionPerformed
 
     private void BtnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResetActionPerformed
@@ -409,7 +418,7 @@ public class Game extends JFrame{
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
+    public static javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtKeyPress;
     // End of variables declaration//GEN-END:variables
