@@ -6,20 +6,26 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.Timer;
 
 
-public class Game extends javax.swing.JFrame{
+
+public class Game extends JFrame{
     
     // Variables
     Snake snake;
     Fondo fondo;
     InicialDraw draw;
     Move move = new Move();
+    Menu menu;
+    
+    
     boolean isPlaying = false;
     int t = 600; int c = 30;
     int time = 0;
     int sound = 0;
+    boolean isSound = true;
     
     
     public Game() {
@@ -32,7 +38,7 @@ public class Game extends javax.swing.JFrame{
         this.add(draw);
         draw.setBounds(10,10,t,t);
         draw.setOpaque(false);
-        
+        LblLevel.setText(Menu.txtSpeed.getText());
         txtKeyPress.requestFocus(true);
     }
     
@@ -47,6 +53,9 @@ public class Game extends javax.swing.JFrame{
         fondo = new Fondo(t,c);
         this.add(fondo);
         fondo.setBounds(10,10,t,t);
+        
+        
+        snake.CambiarSonido(isSound);
         
         Timer timeGame = new Timer(1000, new ActionListener(){
             public void actionPerformed(ActionEvent e){
@@ -84,6 +93,10 @@ public class Game extends javax.swing.JFrame{
         txtKeyPress.requestFocus(true);
     }
     
+    public void getData(){
+        
+    }
+    
    
 
     @SuppressWarnings("unchecked")
@@ -98,10 +111,17 @@ public class Game extends javax.swing.JFrame{
         jLabel3 = new javax.swing.JLabel();
         LblTime = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        LblScore1 = new javax.swing.JLabel();
+        LblBS1 = new javax.swing.JLabel();
         BtnSound = new javax.swing.JButton();
         BtnHome = new javax.swing.JButton();
         BtnReset = new javax.swing.JButton();
+        BtnBS1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        LblLevel = new javax.swing.JLabel();
+        BtnBS2 = new javax.swing.JLabel();
+        LblBS2 = new javax.swing.JLabel();
+        BtnBS3 = new javax.swing.JLabel();
+        LblBS3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -116,6 +136,7 @@ public class Game extends javax.swing.JFrame{
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Btn_Exit.setBackground(new java.awt.Color(0, 0, 0));
         Btn_Exit.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -130,6 +151,7 @@ public class Game extends javax.swing.JFrame{
                 Btn_ExitActionPerformed(evt);
             }
         });
+        jPanel1.add(Btn_Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(152, 7, 41, 41));
 
         txtKeyPress.setText("jTextField1");
         txtKeyPress.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -137,36 +159,43 @@ public class Game extends javax.swing.JFrame{
                 txtKeyPressKeyPressed(evt);
             }
         });
+        jPanel1.add(txtKeyPress, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 714, 0, -1));
 
-        LblScore.setFont(new java.awt.Font("DS-Digital", 0, 48)); // NOI18N
+        LblScore.setFont(new java.awt.Font("DS-Digital", 0, 40)); // NOI18N
         LblScore.setForeground(new java.awt.Color(255, 255, 255));
         LblScore.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblScore.setText("0000");
+        jPanel1.add(LblScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 86, 200, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("SCORE:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 54, 200, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("TIME");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 236, 200, -1));
 
-        LblTime.setFont(new java.awt.Font("DS-Digital", 0, 48)); // NOI18N
+        LblTime.setFont(new java.awt.Font("DS-Digital", 0, 40)); // NOI18N
         LblTime.setForeground(new java.awt.Color(255, 255, 255));
         LblTime.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LblTime.setText("00:00");
+        jPanel1.add(LblTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 268, 200, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("LEVEL:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 145, 190, -1));
 
-        LblScore1.setFont(new java.awt.Font("DS-Digital", 0, 48)); // NOI18N
-        LblScore1.setForeground(new java.awt.Color(255, 255, 255));
-        LblScore1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LblScore1.setText("EASY");
+        LblBS1.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        LblBS1.setForeground(new java.awt.Color(255, 255, 255));
+        LblBS1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        LblBS1.setText("SCR1");
+        jPanel1.add(LblBS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 60, -1));
 
         BtnSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Sound.png"))); // NOI18N
         BtnSound.setBorder(null);
@@ -176,6 +205,7 @@ public class Game extends javax.swing.JFrame{
                 BtnSoundActionPerformed(evt);
             }
         });
+        jPanel1.add(BtnSound, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, -1, -1));
 
         BtnHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/home.png"))); // NOI18N
         BtnHome.setBorder(null);
@@ -185,6 +215,7 @@ public class Game extends javax.swing.JFrame{
                 BtnHomeActionPerformed(evt);
             }
         });
+        jPanel1.add(BtnHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 550, -1, -1));
 
         BtnReset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/reset.png"))); // NOI18N
         BtnReset.setBorder(null);
@@ -194,64 +225,49 @@ public class Game extends javax.swing.JFrame{
                 BtnResetActionPerformed(evt);
             }
         });
+        jPanel1.add(BtnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 550, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(Btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(txtKeyPress, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LblScore, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LblScore1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LblTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(BtnSound, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(BtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(Btn_Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LblScore)
-                .addGap(57, 57, 57)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LblScore1)
-                .addGap(58, 58, 58)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LblTime)
-                .addGap(103, 103, 103)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnSound, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(82, 82, 82)
-                .addComponent(txtKeyPress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        BtnBS1.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        BtnBS1.setForeground(new java.awt.Color(255, 255, 255));
+        BtnBS1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BtnBS1.setText("0000");
+        jPanel1.add(BtnBS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 88, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 204, 51));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("BEST SCORE:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 200, -1));
+
+        LblLevel.setFont(new java.awt.Font("DS-Digital", 0, 40)); // NOI18N
+        LblLevel.setForeground(new java.awt.Color(255, 255, 255));
+        LblLevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LblLevel.setText("EASY");
+        jPanel1.add(LblLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 177, 200, -1));
+
+        BtnBS2.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        BtnBS2.setForeground(new java.awt.Color(255, 255, 255));
+        BtnBS2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BtnBS2.setText("0000");
+        jPanel1.add(BtnBS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 88, -1));
+
+        LblBS2.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        LblBS2.setForeground(new java.awt.Color(255, 255, 255));
+        LblBS2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        LblBS2.setText("SCR2");
+        jPanel1.add(LblBS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 60, -1));
+
+        BtnBS3.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        BtnBS3.setForeground(new java.awt.Color(255, 255, 255));
+        BtnBS3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        BtnBS3.setText("0000");
+        jPanel1.add(BtnBS3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, 88, -1));
+
+        LblBS3.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        LblBS3.setForeground(new java.awt.Color(255, 255, 255));
+        LblBS3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        LblBS3.setText("SCR3");
+        jPanel1.add(LblBS3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 60, -1));
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setEnabled(false);
@@ -278,7 +294,7 @@ public class Game extends javax.swing.JFrame{
                 .addGap(130, 130, 130)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,14 +338,15 @@ public class Game extends javax.swing.JFrame{
             case 0:
                BtnSound.setIcon(iconoM);
                sound = 1;
-               snake.CambiarSonido(false);
+               isSound = false;
                break;
             case 1:
                 BtnSound.setIcon(iconoS);
                 sound = 0;
-                snake.CambiarSonido(true);
+                isSound = true;
                 break; 
         }
+        snake.CambiarSonido(isSound);
         txtKeyPress.requestFocus(false);
     }//GEN-LAST:event_BtnSoundActionPerformed
 
@@ -375,16 +392,23 @@ public class Game extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JLabel BtnBS1;
+    public static javax.swing.JLabel BtnBS2;
+    public static javax.swing.JLabel BtnBS3;
     private javax.swing.JButton BtnHome;
     private javax.swing.JButton BtnReset;
     private javax.swing.JButton BtnSound;
     private javax.swing.JButton Btn_Exit;
+    public static javax.swing.JLabel LblBS1;
+    public static javax.swing.JLabel LblBS2;
+    public static javax.swing.JLabel LblBS3;
+    public static javax.swing.JLabel LblLevel;
     public static javax.swing.JLabel LblScore;
-    public static javax.swing.JLabel LblScore1;
     private static javax.swing.JLabel LblTime;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField txtKeyPress;

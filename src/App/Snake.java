@@ -18,7 +18,8 @@ public class Snake extends JPanel{
     String direccion = "right";             // Direccion de la Serpiente
     String direccionProxima = "right";
     int score = 0;
-    boolean soundOn = true;
+    int speed;
+    boolean soundOn;
     boolean estado = true;
     AudioClip soundFile;
     
@@ -32,7 +33,22 @@ public class Snake extends JPanel{
         this.cantidad = cantidad;
         this.tamano = tamanomax/cantidad;
         this.res = tamanomax%cantidad;
+        
+        
         soundFile = java.applet.Applet.newAudioClip(getClass().getResource("/Sonidos/effect.wav"));
+        
+        String Dificultad = Menu.txtSpeed.getText();
+        switch(Dificultad){
+            case "Easy":
+                speed = 110;
+                break;
+            case "Medium":
+                speed = 80;
+                break;
+            case "Hard":
+                speed = 50;
+                break;
+        }
         
         /* La Serpiente inicia con dos casillas A y B */
         int[] a = {cantidad/2-1,cantidad/2-1};
@@ -42,7 +58,7 @@ public class Snake extends JPanel{
         generarComida();
         
         move = new Move();
-        move.Objetos(this,50);
+        move.Objetos(this,speed);
         hilo = new Thread(move);
         hilo.start();
         
@@ -158,6 +174,10 @@ public class Snake extends JPanel{
     
     public void CambiarEstado(boolean status){
         this.estado = status;
+    }
+    
+    public void cambiarVelocidad(int speed){
+        this.speed = speed;
     }
     
     
