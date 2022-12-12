@@ -44,5 +44,6 @@ El principal desafío fue adaptar el código a mis necesidades, ya que el códig
 ### Video Demostrativo:
 [![Watch the video](https://github.com/zzMAZzz/Unidad3_Ejercicio1-16/blob/main/Imagenes/preview.png)](https://youtu.be/u8SMderv3jo)
 
-
-
+## IMPORTANTE:
+### Complementos Necesarios:
+- Se debe instalar las fuentes "Goethe" y "ds_digital" las cuales encontraran en la carpeta [Instalar – Fonts](https://github.com/zzMAZzz/SnakeGame_20181900636/tree/main/Instalar%20-%20Fonts "Fonts") del Repositorio, descomprimen, e instalan las fuentes para una mejor experiencia. 
