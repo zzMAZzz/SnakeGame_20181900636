@@ -35,6 +35,7 @@ public class Menu extends javax.swing.JFrame {
         txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnExit = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         txtSpeed.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtSpeed.setText("Easy");
@@ -161,6 +162,11 @@ public class Menu extends javax.swing.JFrame {
         });
         getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 4, 40, 30));
 
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setText("Developer by Miguel Zelaya");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 540, 240, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -254,6 +260,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btnGroup;
     public static javax.swing.JCheckBox cbWall;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JRadioButton rdBtn1;
     private javax.swing.JRadioButton rdBtn2;
     private javax.swing.JRadioButton rdBtn3;
