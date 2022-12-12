@@ -105,7 +105,7 @@ public class Menu extends javax.swing.JFrame {
         txtName.setBackground(new java.awt.Color(154, 204, 153));
         txtName.setFont(new java.awt.Font("Goethe", 1, 48)); // NOI18N
         txtName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtName.setText("Nombre");
+        txtName.setText("Insert Name");
         txtName.setToolTipText("maximum 4 letters");
         txtName.setActionCommand("<Not Set>");
         txtName.setBorder(null);
@@ -200,7 +200,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void txtNameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNameFocusGained
         nombre = txtName.getText();
-        if (nombre.equals("Nombre")){
+        if (nombre.equals("Insert Name")){
             txtName.setText("");
         } else {
             txtName.setText(nombre);
@@ -212,7 +212,7 @@ public class Menu extends javax.swing.JFrame {
         if (!nombre.equals("")){
             txtName.setText(nombre);
         } else {
-            txtName.setText("Nombre");
+            txtName.setText("Insert Name");
         }
     }//GEN-LAST:event_txtNameFocusLost
 
