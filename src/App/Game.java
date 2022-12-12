@@ -27,6 +27,8 @@ public class Game extends JFrame{
     int sound = 0;
     boolean isSound = true;
     boolean isWall;
+    Scores scores = new Scores();
+    ScoresFile scoresFile = new ScoresFile();
     
     
     public Game() {
@@ -42,6 +44,19 @@ public class Game extends JFrame{
         LblLevel.setText(Menu.txtSpeed.getText());
         lblStart.setVisible(true);
         PanelGO.setVisible(false);
+        
+        // Carga las puntuaciones
+        scoresFile.load(scores);
+        
+        // Mostrar la lista inicial de máximas puntuaciones
+        NameBS1.setText(scores.NombretoString(0));
+        PointsBS1.setText(scores.PuntajetoString(0));
+        NameBS2.setText(scores.NombretoString(1));
+        PointsBS2.setText(scores.PuntajetoString(1));
+        NameBS3.setText(scores.NombretoString(2));
+        PointsBS3.setText(scores.PuntajetoString(2));
+        
+        
         txtKeyPress.requestFocus(true);
     }
     
@@ -127,17 +142,17 @@ public class Game extends JFrame{
         jLabel3 = new javax.swing.JLabel();
         LblTime = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        LblBS1 = new javax.swing.JLabel();
+        NameBS1 = new javax.swing.JLabel();
         BtnSound = new javax.swing.JButton();
         BtnHome = new javax.swing.JButton();
         BtnReset = new javax.swing.JButton();
-        BtnBS1 = new javax.swing.JLabel();
+        PointsBS1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         LblLevel = new javax.swing.JLabel();
-        BtnBS2 = new javax.swing.JLabel();
-        LblBS2 = new javax.swing.JLabel();
-        BtnBS3 = new javax.swing.JLabel();
-        LblBS3 = new javax.swing.JLabel();
+        PointsBS2 = new javax.swing.JLabel();
+        NameBS2 = new javax.swing.JLabel();
+        PointsBS3 = new javax.swing.JLabel();
+        NameBS3 = new javax.swing.JLabel();
         PanelGO = new javax.swing.JPanel();
         lblGameOver2 = new javax.swing.JLabel();
         lblGameOver1 = new javax.swing.JLabel();
@@ -212,11 +227,12 @@ public class Game extends JFrame{
         jLabel4.setText("LEVEL:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 145, 190, -1));
 
-        LblBS1.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
-        LblBS1.setForeground(new java.awt.Color(255, 255, 255));
-        LblBS1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        LblBS1.setText("SCR1");
-        jPanel1.add(LblBS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 60, -1));
+        NameBS1.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        NameBS1.setForeground(new java.awt.Color(255, 255, 255));
+        NameBS1.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        NameBS1.setText("SCR1");
+        NameBS1.setName(""); // NOI18N
+        jPanel1.add(NameBS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, 60, -1));
 
         BtnSound.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Sound.png"))); // NOI18N
         BtnSound.setBorder(null);
@@ -248,11 +264,11 @@ public class Game extends JFrame{
         });
         jPanel1.add(BtnReset, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 550, -1, -1));
 
-        BtnBS1.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
-        BtnBS1.setForeground(new java.awt.Color(255, 255, 255));
-        BtnBS1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BtnBS1.setText("0000");
-        jPanel1.add(BtnBS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 88, -1));
+        PointsBS1.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        PointsBS1.setForeground(new java.awt.Color(255, 255, 255));
+        PointsBS1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PointsBS1.setText("0000");
+        jPanel1.add(PointsBS1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 88, -1));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI Black", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 204, 51));
@@ -266,29 +282,29 @@ public class Game extends JFrame{
         LblLevel.setText("EASY");
         jPanel1.add(LblLevel, new org.netbeans.lib.awtextra.AbsoluteConstraints(-3, 177, 200, -1));
 
-        BtnBS2.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
-        BtnBS2.setForeground(new java.awt.Color(255, 255, 255));
-        BtnBS2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BtnBS2.setText("0000");
-        jPanel1.add(BtnBS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 88, -1));
+        PointsBS2.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        PointsBS2.setForeground(new java.awt.Color(255, 255, 255));
+        PointsBS2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PointsBS2.setText("0000");
+        jPanel1.add(PointsBS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 88, -1));
 
-        LblBS2.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
-        LblBS2.setForeground(new java.awt.Color(255, 255, 255));
-        LblBS2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        LblBS2.setText("SCR2");
-        jPanel1.add(LblBS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 60, -1));
+        NameBS2.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        NameBS2.setForeground(new java.awt.Color(255, 255, 255));
+        NameBS2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        NameBS2.setText("SCR2");
+        jPanel1.add(NameBS2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 60, -1));
 
-        BtnBS3.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
-        BtnBS3.setForeground(new java.awt.Color(255, 255, 255));
-        BtnBS3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        BtnBS3.setText("0000");
-        jPanel1.add(BtnBS3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, 88, -1));
+        PointsBS3.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        PointsBS3.setForeground(new java.awt.Color(255, 255, 255));
+        PointsBS3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PointsBS3.setText("0000");
+        jPanel1.add(PointsBS3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, 88, -1));
 
-        LblBS3.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
-        LblBS3.setForeground(new java.awt.Color(255, 255, 255));
-        LblBS3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        LblBS3.setText("SCR3");
-        jPanel1.add(LblBS3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 60, -1));
+        NameBS3.setFont(new java.awt.Font("DS-Digital", 0, 25)); // NOI18N
+        NameBS3.setForeground(new java.awt.Color(255, 255, 255));
+        NameBS3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        NameBS3.setText("SCR3");
+        jPanel1.add(NameBS3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 470, 60, -1));
 
         PanelGO.setBackground(new java.awt.Color(0, 0, 0));
         PanelGO.setEnabled(false);
@@ -470,21 +486,21 @@ public class Game extends JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JLabel BtnBS1;
-    public static javax.swing.JLabel BtnBS2;
-    public static javax.swing.JLabel BtnBS3;
     private javax.swing.JButton BtnHome;
     private javax.swing.JButton BtnReset;
     private javax.swing.JButton BtnResetGO;
     private javax.swing.JButton BtnSound;
     private javax.swing.JButton Btn_Exit;
-    public static javax.swing.JLabel LblBS1;
-    public static javax.swing.JLabel LblBS2;
-    public static javax.swing.JLabel LblBS3;
     public static javax.swing.JLabel LblLevel;
     public static javax.swing.JLabel LblScore;
     public static javax.swing.JLabel LblTime;
+    public static javax.swing.JLabel NameBS1;
+    public static javax.swing.JLabel NameBS2;
+    public static javax.swing.JLabel NameBS3;
     public static javax.swing.JPanel PanelGO;
+    public static javax.swing.JLabel PointsBS1;
+    public static javax.swing.JLabel PointsBS2;
+    public static javax.swing.JLabel PointsBS3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

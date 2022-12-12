@@ -235,6 +235,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameKeyReleased
 
     private void txtNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNameKeyTyped
+        if(txtName.getText().length() >= 4){
+            evt.consume();
+        }
     }//GEN-LAST:event_txtNameKeyTyped
 
     public static void main(String args[]) {

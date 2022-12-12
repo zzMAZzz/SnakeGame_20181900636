@@ -22,6 +22,7 @@ public class Snake extends JPanel{
     boolean estado = true;
     boolean isWall;
     boolean soundOn;
+    boolean saveScore = false;
     AudioClip soundFile;
     
     
@@ -117,16 +118,23 @@ public class Snake extends JPanel{
         if(existe){
             
             Game.PanelGO.setVisible(true);  // Game Over por chocar consigo mismo
-
+            BestScores();
+            
         } else if (nuevo[0]<0 || nuevo[0]>=cantidad || nuevo[1]<0 || nuevo[1]>=cantidad  ) {
             
             Game.PanelGO.setVisible(true);  // Game Over por salir de area.
+            BestScores();
+            
+            
+            
+            
+            
             
         } else {
             if (nuevo[0]==comida[0] && nuevo[1]==comida[1]){
                snake.add(nuevo);
                generarComida();
-               score++;
+               score = score+5;
                if (soundOn){
                    soundFile.play();
                }
@@ -161,6 +169,42 @@ public class Snake extends JPanel{
             this.comida[0]=a;
             this.comida[1]=b;
         }
+    }
+    
+    public void BestScores(){
+            if (!saveScore){
+                
+                // Creación de objetos para almacenar máximas puntuaciones
+                Scores scores = new Scores();
+                ScoresFile scoresFile = new ScoresFile();
+
+                // Cargar la lista inicial de máximas puntuaciones
+                scoresFile.load(scores);
+
+                // Recoger datos de nueva puntuación desde la ventana
+                String playerName = Menu.txtName.getText();
+                int value = score;
+
+                // Crear una nueva puntuación
+                Score score = new Score(playerName, value);
+
+                scores.getPosition(score);
+
+                // Añadirla a la lista de puntuaciones
+                scores.addScore(score);
+
+                // Mostrar la lista de máximas puntuaciones
+                Game.NameBS1.setText(scores.NombretoString(0));
+                Game.PointsBS1.setText(scores.PuntajetoString(0));
+                Game.NameBS2.setText(scores.NombretoString(1));
+                Game.PointsBS2.setText(scores.PuntajetoString(1));
+                Game.NameBS3.setText(scores.NombretoString(2));
+                Game.PointsBS3.setText(scores.PuntajetoString(2));
+
+                // Almacenar la lista de máximas puntuaciones
+                scoresFile.save(scores);
+                saveScore = true;
+            }       
     }
     
     public void cambiarDireccion(String dir){

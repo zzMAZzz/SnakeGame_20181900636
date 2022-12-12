@@ -212,7 +212,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="LblBS1">
+        <Component class="javax.swing.JLabel" name="NameBS1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DS-Digital" size="25" style="0"/>
@@ -222,6 +222,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="11"/>
             <Property name="text" type="java.lang.String" value="SCR1"/>
+            <Property name="name" type="java.lang.String" value="" noResource="true"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -289,7 +290,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="BtnBS1">
+        <Component class="javax.swing.JLabel" name="PointsBS1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DS-Digital" size="25" style="0"/>
@@ -346,7 +347,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="BtnBS2">
+        <Component class="javax.swing.JLabel" name="PointsBS2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DS-Digital" size="25" style="0"/>
@@ -366,7 +367,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="LblBS2">
+        <Component class="javax.swing.JLabel" name="NameBS2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DS-Digital" size="25" style="0"/>
@@ -386,7 +387,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="BtnBS3">
+        <Component class="javax.swing.JLabel" name="PointsBS3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DS-Digital" size="25" style="0"/>
@@ -406,7 +407,7 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JLabel" name="LblBS3">
+        <Component class="javax.swing.JLabel" name="NameBS3">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="DS-Digital" size="25" style="0"/>
